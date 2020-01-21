@@ -1,5 +1,4 @@
-#ifndef __MATRIX__
-#define __MATRIX__
+#pragma once
 
 // this file contains the declaration of the class Matrix
 // Matrix is a 4 x 4 square matrix that is used to represent affine transformations
@@ -34,6 +33,6 @@ class Matrix {
 };
 
 
-#endif
+
 
 

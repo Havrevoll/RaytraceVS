@@ -33,11 +33,11 @@
     <ClCompile Include="Utilities\RGBColor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Utilities\Ray.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ray.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Utilities\Vector3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -51,6 +51,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Utilities\RGBColor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Ray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

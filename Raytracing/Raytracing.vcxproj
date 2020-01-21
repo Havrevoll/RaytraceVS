@@ -143,14 +143,15 @@
     <ClCompile Include="Utilities\Matrix.cpp" />
     <ClCompile Include="Utilities\Normal.cpp" />
     <ClCompile Include="Utilities\Point3D.cpp" />
+    <ClCompile Include="Utilities\Ray.cpp" />
     <ClCompile Include="Utilities\RGBColor.cpp" />
     <ClCompile Include="Utilities\Vector3D.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Ray.h" />
     <ClInclude Include="Utilities\Matrix.h" />
     <ClInclude Include="Utilities\Normal.h" />
     <ClInclude Include="Utilities\Point3D.h" />
+    <ClInclude Include="Utilities\Ray.h" />
     <ClInclude Include="Utilities\RGBColor.h" />
     <ClInclude Include="Utilities\Vector3D.h" />
   </ItemGroup>
