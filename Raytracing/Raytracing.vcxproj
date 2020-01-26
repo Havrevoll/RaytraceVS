@@ -153,6 +153,7 @@
     <ClInclude Include="Utilities\Point3D.h" />
     <ClInclude Include="Utilities\Ray.h" />
     <ClInclude Include="Utilities\RGBColor.h" />
+    <ClInclude Include="Utilities\stb_image_write.h" />
     <ClInclude Include="Utilities\Vector3D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
