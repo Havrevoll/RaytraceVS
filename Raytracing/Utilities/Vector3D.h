@@ -1,5 +1,4 @@
-#ifndef __VECTOR_3D__
-#define __VECTOR_3D__
+#pragma once
 
 // This file contains the defintion of the class Vector3D
 
@@ -182,8 +181,5 @@ operator* (const double a, const Vector3D& v) {
 
 Vector3D 
 operator* (const Matrix& mat, const Vector3D& v);
-
-
-#endif
 
 

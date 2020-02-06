@@ -139,7 +139,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="GeometricObject.cpp" />
     <ClCompile Include="HelloWindowsDesktop.cpp" />
+    <ClCompile Include="Shaderec.cpp" />
     <ClCompile Include="Utilities\Matrix.cpp" />
     <ClCompile Include="Utilities\Normal.cpp" />
     <ClCompile Include="Utilities\Point3D.cpp" />
@@ -148,6 +150,8 @@
     <ClCompile Include="Utilities\Vector3D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GeometricObject.h" />
+    <ClInclude Include="Shaderec.h" />
     <ClInclude Include="Utilities\Matrix.h" />
     <ClInclude Include="Utilities\Normal.h" />
     <ClInclude Include="Utilities\Point3D.h" />

@@ -1,5 +1,4 @@
-#ifndef __POINT3D__
-#define __POINT3D__
+#pragma once
 
 // This file contains the defintion of the class Point3D
 
@@ -127,4 +126,4 @@ operator* (double a, const Point3D& p) {
 Point3D 						
 operator* (const Matrix& mat, const Point3D& p);
 
-#endif
+
