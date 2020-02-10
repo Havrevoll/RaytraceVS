@@ -1,5 +1,4 @@
-#ifndef __RGB_COLOR__
-#define __RGB_COLOR__
+#pragma once
 
 // This file contains the declaration of the class RGBColor
 
@@ -159,4 +158,4 @@ operator* (const float a, const RGBColor& c) {
 }
 
 
-#endif
+

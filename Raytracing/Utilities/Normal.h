@@ -1,6 +1,4 @@
-
-#ifndef __NORMAL__
-#define __NORMAL__
+#pragma once
 
 // This file contains the declaration of the class Normal
 
@@ -165,6 +163,5 @@ Normal
 operator* (const Matrix& mat, const Normal& n);
 
 
-#endif
 
 
