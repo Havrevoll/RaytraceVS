@@ -2,8 +2,9 @@
 
 #include "ViewPlane.h"
 #include "Utilities/RGBColor.h"
-#include "Sphere.h"
 #include "Tracer.h"
+#include "Sphere.h"
+
 
 class World
 {
@@ -15,6 +16,8 @@ public:
 	Tracer* tracer_ptr;
 
 	World(void);
+
+	~World();
 	
 	void build(void);
 

@@ -1,4 +1,5 @@
 #include "Shaderec.h"
+#include "Utilities/Constants.h"
 
 ShadeRec::ShadeRec(World& wr) 
 	: hit_an_object(false), 
@@ -20,7 +21,9 @@ ShadeRec::~ShadeRec(void)
 {
 }
 
+/*
 ShadeRec& ShadeRec::operator=(const ShadeRec& rhs)
 {
 	// TODO: insert return statement here
 }
+*/

@@ -9,6 +9,7 @@ class GeometricObject
 public:
 
 // skal det inn ein konstruktor her eller?
+	GeometricObject(void);
 
 	virtual bool hit(const Ray& ray, double& tmin, ShadeRec& sr) const = 0;
 

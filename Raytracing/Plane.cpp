@@ -1,5 +1,8 @@
 #include "Plane.h"
 
+
+const double Plane::kEpsilon = 0.001;
+
 Plane::Plane(void)
 {
 }

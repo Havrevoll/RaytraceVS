@@ -100,6 +100,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <ShowIncludes>true</ShowIncludes>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -139,24 +140,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BuildRedSphere.cpp" />
     <ClCompile Include="GeometricObject.cpp" />
     <ClCompile Include="HelloWindowsDesktop.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="Shaderec.cpp" />
+    <ClCompile Include="SingleSphere.cpp" />
     <ClCompile Include="Sphere.cpp" />
+    <ClCompile Include="Tracer.cpp" />
     <ClCompile Include="Utilities\Matrix.cpp" />
     <ClCompile Include="Utilities\Normal.cpp" />
     <ClCompile Include="Utilities\Point3D.cpp" />
     <ClCompile Include="Utilities\Ray.cpp" />
     <ClCompile Include="Utilities\RGBColor.cpp" />
     <ClCompile Include="Utilities\Vector3D.cpp" />
+    <ClCompile Include="ViewPlane.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeometricObject.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="Shaderec.h" />
+    <ClInclude Include="SingleSphere.h" />
     <ClInclude Include="Sphere.h" />
+    <ClInclude Include="Tracer.h" />
     <ClInclude Include="Utilities\Constants.h" />
     <ClInclude Include="Utilities\Maths.h" />
     <ClInclude Include="Utilities\Matrix.h" />
@@ -166,6 +173,7 @@
     <ClInclude Include="Utilities\RGBColor.h" />
     <ClInclude Include="Utilities\stb_image_write.h" />
     <ClInclude Include="Utilities\Vector3D.h" />
+    <ClInclude Include="ViewPlane.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>

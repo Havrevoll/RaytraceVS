@@ -1,7 +1,12 @@
 #pragma once
+
+class World;
+
 #include "Utilities/Point3D.h"
-#include "Utilities/Vector3D.h"
+/*#include "Utilities/Vector3D.h"*/
 #include "Utilities/RGBColor.h"
+#include "Utilities/Normal.h"
+
 
 class ShadeRec
 {
@@ -16,7 +21,7 @@ public:
 	ShadeRec(const ShadeRec& sr); //copy constructor
 	~ShadeRec(void); //destructor
 
-	ShadeRec& operator= (const ShadeRec& rhs); // assignment operator
+	//ShadeRec& operator= (const ShadeRec& rhs); // assignment operator
 
 
 };

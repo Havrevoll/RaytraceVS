@@ -3,6 +3,8 @@
 
 using std::sqrt;
 
+const double Sphere::kEpsilon = 0.001;
+
 Sphere::Sphere(void)
 {
 }
@@ -47,3 +49,5 @@ bool Sphere::hit(const Ray& ray, double& tmin, ShadeRec& sr) const
 
 	return (false);
 }
+
+

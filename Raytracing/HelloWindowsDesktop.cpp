@@ -13,21 +13,22 @@
 
 // Global variables
 
-// The main window class name.
+   // The main window class name.
 static TCHAR szWindowClass[] = _T("DesktopApp");
 
-// The string that appears in the application's title bar.
+   // The string that appears in the application's title bar.
 static TCHAR szTitle[] = _T("Windows Desktop Guided Tour Application");
 
 HINSTANCE hInst;
 
-// Forward declarations of functions included in this code module:
+   // Forward declarations of functions included in this code module:
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 
-int CALLBACK WinMain(
+
+int WINAPI wWinMain(
 	_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,
-	_In_ LPSTR     lpCmdLine,
+	_In_ PWSTR     lpCmdLine,
 	_In_ int       nCmdShow
 )
 {
@@ -94,8 +95,8 @@ int CALLBACK WinMain(
 	// The parameters to ShowWindow explained:
 	// hWnd: the value returned from CreateWindow
 	// nCmdShow: the fourth parameter from WinMain
-	ShowWindow(hWnd,
-		nCmdShow);
+	ShowWindow(hWnd, nCmdShow);
+
 	UpdateWindow(hWnd);
 
 	// Main message loop:
@@ -115,6 +116,7 @@ int CALLBACK WinMain(
 //
 //  WM_PAINT    - Paint the main window
 //  WM_DESTROY  - post a quit message and return
+
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	PAINTSTRUCT ps;
