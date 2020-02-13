@@ -156,6 +156,7 @@
     <ClCompile Include="Utilities\Vector3D.cpp" />
     <ClCompile Include="ViewPlane.cpp" />
     <ClCompile Include="World.cpp" />
+    <ClCompile Include="writeImage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeometricObject.h" />
@@ -175,6 +176,7 @@
     <ClInclude Include="Utilities\Vector3D.h" />
     <ClInclude Include="ViewPlane.h" />
     <ClInclude Include="World.h" />
+    <ClInclude Include="writeImage.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

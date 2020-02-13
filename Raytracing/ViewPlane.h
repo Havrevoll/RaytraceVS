@@ -7,6 +7,7 @@ public:
 	float s; // pixel size
 	float gamma; // monitor gamma factor
 	float inv_gamma; // one over gamma
+	bool			show_out_of_gamut;			// display red if RGBColor out of gamut
 
 public:
 	ViewPlane(void);
