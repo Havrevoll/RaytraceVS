@@ -76,7 +76,7 @@ void World::render_scene(void) const
 			y = vp.s * (r - 0.5 * (vp.vres - 1.0));
 			ray.o = Point3D(x, y, zw);
 			pixel_color = tracer_ptr->trace_ray(ray);
-			display_pixel(r, c, pixel_color, image);
+			display_pixel(r, c, pixel_color);
 		}
 	}
 }
