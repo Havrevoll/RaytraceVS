@@ -44,8 +44,8 @@ World::~World()
 
 void World::build(void)
 {
-	vp.set_hres(200);
-	vp.set_vres(200);
+	vp.set_hres((int)200);
+	vp.set_vres((int)200);
 	vp.set_pixel_size(1.0);
 	vp.set_gamma(1.0);
 	background_color = black;
@@ -62,7 +62,7 @@ void World::render_scene(void) const
 	double x, y;
 
 
-	 open_window(vp.hres, vp.vres);
+	 open_window((int)vp.hres, (int)vp.vres);
 
 
 
@@ -83,7 +83,7 @@ void World::render_scene(void) const
 
 void World::open_window(const int hres, const int vres) const
 {
-	im.image = new unsigned char[hres * vres * 3];
+	im(hres, vres);
 }
 
 // ------------------------------------------------------------------ clamp
@@ -134,5 +134,6 @@ void World::display_pixel(const int row, const int column, const RGBColor& pixel
 	//	(int)(mapped_color.g * 255),
 	//	(int)(mapped_color.b * 255));
 
+	im->setPixel(x, y, (int)(mapped_color.r * 255), (int)(mapped_color.g * 255), (int)(mapped_color.b * 255));
 
 }

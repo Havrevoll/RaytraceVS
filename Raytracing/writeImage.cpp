@@ -4,13 +4,17 @@ writeImage::writeImage(void)
 {
 }
 
-writeImage::writeImage(const int hres, const int vres)
+writeImage::writeImage(const int hr, const int vr)
 {
-	image = new unsigned char[hres * vres * 3]; // lagar ein array for å skriva png til slutt
+	image = new unsigned char[hr * vr * 3]; // lagar ein array for å skriva png til slutt
+	hres = hr;
+	vres = vr;
 }
 
-writeImage writeImage::makeImage(const int hres, const int vres)
+void writeImage::setPixel(const int x, const int y, int red, int green, int blue)
 {
-
-	new unsigned char[hres * vres * 3];
+	data[x * 3 + (vres - 1 - y) * hres * 3] = red;
+	data[x * 3 + (vres - 1 - y) * hres * 3 + 1] = green;
+	data[x * 3 + (vres - 1 - y) * hres * 3 + 2] = blue;
+	
 }
