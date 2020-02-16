@@ -13,8 +13,8 @@ writeImage::writeImage(const int hr, const int vr)
 
 void writeImage::setPixel(const int x, const int y, int red, int green, int blue)
 {
-	data[x * 3 + (vres - 1 - y) * hres * 3] = red;
-	data[x * 3 + (vres - 1 - y) * hres * 3 + 1] = green;
-	data[x * 3 + (vres - 1 - y) * hres * 3 + 2] = blue;
+	image[x * 3 + (vres - 1 - y) * hres * 3] = red;
+	image[x * 3 + (vres - 1 - y) * hres * 3 + 1] = green;
+	image[x * 3 + (vres - 1 - y) * hres * 3 + 2] = blue;
 	
 }

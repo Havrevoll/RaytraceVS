@@ -83,7 +83,7 @@ void World::render_scene(void) const
 
 void World::open_window(const int hres, const int vres) const
 {
-	im(hres, vres);
+	im = new writeImage(hres, vres);
 }
 
 // ------------------------------------------------------------------ clamp
