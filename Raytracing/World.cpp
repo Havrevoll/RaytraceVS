@@ -52,6 +52,9 @@ void World::build(void)
 	tracer_ptr = new SingleSphere(this);
 	sphere.set_center(0.0);
 	sphere.set_radius(85.0);
+
+
+	im = new writeImage(vp.hres, vp.vres);
 }
 
 void World::render_scene(void) const
@@ -62,8 +65,8 @@ void World::render_scene(void) const
 	double x, y;
 
 
-	 open_window((int)vp.hres, (int)vp.vres);
-
+	 /*open_window(vp.hres, vp.vres);*/
+	
 
 
 	ray.d = Vector3D(0, 0, -1);
@@ -81,10 +84,10 @@ void World::render_scene(void) const
 	}
 }
 
-void World::open_window(const int hres, const int vres) const
-{
-	im = new writeImage(hres, vres);
-}
+//void World::open_window(const int hres, const int vres)
+//{
+//	im = new writeImage(hres, vres);
+//}
 
 // ------------------------------------------------------------------ clamp
 

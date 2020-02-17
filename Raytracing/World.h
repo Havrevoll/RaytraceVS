@@ -16,7 +16,7 @@ public:
 	Sphere sphere;
 	Tracer* tracer_ptr;
 
-	writeImage im;
+	writeImage* im;
 
 	World(void);
 
@@ -28,7 +28,7 @@ public:
 
 	
 
-	void open_window(const int hres, const int vres) const;
+	//void open_window(const int hres, const int vres);
 
 	RGBColor max_to_one(const RGBColor& c) const;
 
