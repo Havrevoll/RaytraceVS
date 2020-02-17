@@ -82,6 +82,10 @@ void World::render_scene(void) const
 			display_pixel(r, c, pixel_color);
 		}
 	}
+
+
+
+	im->saveImage();
 }
 
 //void World::open_window(const int hres, const int vres)

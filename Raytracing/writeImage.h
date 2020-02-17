@@ -12,6 +12,8 @@ public:
 	writeImage& operator=(const writeImage& im);
 
 	void setPixel(const int x, const int y, int red, int green, int blue);
+
+	void saveImage(void);
 	
 private:
 	unsigned char* image;

@@ -1,7 +1,7 @@
 #include "writeImage.h"
 #include <cstring>
 #define STB_IMAGE_WRITE_IMPLEMENTATION
-#include "stb_image_write.h"
+#include "Utilities/stb_image_write.h"
 
 writeImage::writeImage(void)
 {
@@ -44,4 +44,9 @@ void writeImage::setPixel(const int x, const int y, int red, int green, int blue
 	image[x * 3 + y * hres * 3 + 1] = green;
 	image[x * 3 + y * hres * 3 + 2] = blue;
 	
+}
+
+void writeImage::saveImage(void)
+{
+	stbi_write_png("foo_out.png", hres, vres, 3, image, 0);
 }

@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <tchar.h>
+#include "World.h"
 
 // Global variables
 
@@ -98,6 +99,14 @@ int WINAPI wWinMain(
 	ShowWindow(hWnd, nCmdShow);
 
 	UpdateWindow(hWnd);
+
+	World w;
+	w.build();
+	w.render_scene();
+
+
+
+
 
 	// Main message loop:
 	MSG msg;
