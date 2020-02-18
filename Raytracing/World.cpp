@@ -141,6 +141,6 @@ void World::display_pixel(const int row, const int column, const RGBColor& pixel
 	//	(int)(mapped_color.g * 255),
 	//	(int)(mapped_color.b * 255));
 
-	im->setPixel(x, y, (int)(mapped_color.r * 255), (int)(mapped_color.g * 255), (int)(mapped_color.b * 255));
+	im->setPixel(x, y, (int)(pixel_color.r * 255), (int)(pixel_color.g * 255), (int)(pixel_color.b * 255));
 
 }
