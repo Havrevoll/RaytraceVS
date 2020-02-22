@@ -18,7 +18,7 @@
 static TCHAR szWindowClass[] = _T("DesktopApp");
 
    // The string that appears in the application's title bar.
-static TCHAR szTitle[] = _T("Windows Desktop Guided Tour Application");
+static TCHAR szTitle[] = _T("Raytracing av fine ting");
 
 HINSTANCE hInst;
 
@@ -29,7 +29,7 @@ LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 int WINAPI wWinMain(
 	_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,
-	_In_ PWSTR     lpCmdLine,
+	_In_ PWSTR     pCmdLine,
 	_In_ int       nCmdShow
 )
 {
@@ -37,15 +37,15 @@ int WINAPI wWinMain(
 
 	wcex.cbSize = sizeof(WNDCLASSEX);
 	wcex.style = CS_HREDRAW | CS_VREDRAW;
-	wcex.lpfnWndProc = WndProc;
+	wcex.lpfnWndProc = WndProc;     // pointer to the window procedure (der mesteparten av oppførselen til vindauget)
 	wcex.cbClsExtra = 0;
 	wcex.cbWndExtra = 0;
-	wcex.hInstance = hInstance;
+	wcex.hInstance = hInstance;  // handle to application instance.
 	wcex.hIcon = LoadIcon(hInstance, IDI_APPLICATION);
 	wcex.hCursor = LoadCursor(NULL, IDC_ARROW);
 	wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
 	wcex.lpszMenuName = NULL;
-	wcex.lpszClassName = szWindowClass;
+	wcex.lpszClassName = szWindowClass;  // string that identifies the window class.
 	wcex.hIconSm = LoadIcon(wcex.hInstance, IDI_APPLICATION);
 
 	if (!RegisterClassEx(&wcex))
@@ -61,26 +61,18 @@ int WINAPI wWinMain(
 	// Store instance handle in our global variable
 	hInst = hInstance;
 
-	// The parameters to CreateWindow explained:
-	// szWindowClass: the name of the application
-	// szTitle: the text that appears in the title bar
-	// WS_OVERLAPPEDWINDOW: the type of window to create
-	// CW_USEDEFAULT, CW_USEDEFAULT: initial position (x, y)
-	// 500, 100: initial size (width, length)
-	// NULL: the parent of this window
-	// NULL: this application does not have a menu bar
-	// hInstance: the first parameter from WinMain
-	// NULL: not used in this application
-	HWND hWnd = CreateWindow(
-		szWindowClass,
-		szTitle,
-		WS_OVERLAPPEDWINDOW,
-		CW_USEDEFAULT, CW_USEDEFAULT,
-		500, 100,
-		NULL,
-		NULL,
-		hInstance,
-		NULL
+	
+	HWND hWnd = CreateWindowEx(
+		0, // optinal window styles. kunne vore WS_EX_COMPOSITED ? cannot be used if the window has a class style of either CS_OWNDC or CS_CLASSDC
+		szWindowClass, // window class
+		szTitle, // window text
+		WS_OVERLAPPEDWINDOW, // window style
+		CW_USEDEFAULT, CW_USEDEFAULT, //position
+		400, 400, //size
+		NULL, //parent window
+		NULL,  // menu bar
+		hInstance, // instance handle, the first parameter from WinMain
+		NULL // additional application data
 	);
 
 	if (!hWnd)
@@ -99,6 +91,8 @@ int WINAPI wWinMain(
 	ShowWindow(hWnd, nCmdShow);
 
 	UpdateWindow(hWnd);
+
+	// Byrja på raytracinga?
 
 	World w;
 	w.build();
@@ -128,9 +122,10 @@ int WINAPI wWinMain(
 
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	PAINTSTRUCT ps;
-	HDC hdc;
-	TCHAR greeting[] = _T("Hello, Windows desktop!");
+	PAINTSTRUCT ps;    // Kva er no igjen PAINTSTRUCT?
+	HDC hdc;           // Kva er no igjen HDC?
+
+	TCHAR greeting[] = _T("Ja, her skal biletet koma då.");
 
 	switch (message)
 	{
@@ -145,8 +140,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			greeting, _tcslen(greeting));
 		// End application-specific layout section.
 
+		FillRect(hdc, &ps.rcPaint, (HBRUSH)(COLOR_WINDOW + 1));
+
 		EndPaint(hWnd, &ps);
+
 		break;
+
 	case WM_DESTROY:
 		PostQuitMessage(0);
 		break;
