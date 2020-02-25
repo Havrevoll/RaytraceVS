@@ -92,12 +92,6 @@ int WINAPI wWinMain(
 
 	UpdateWindow(hWnd);
 
-	// Byrja på raytracinga?
-
-	World w;
-	w.build();
-	w.render_scene();
-
 
 
 
@@ -123,14 +117,37 @@ int WINAPI wWinMain(
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	PAINTSTRUCT ps;    // Kva er no igjen PAINTSTRUCT?
-	HDC hdc;           // Kva er no igjen HDC?
+	HDC hdc;           // Kva er no igjen HDC? Det er Handle for Device Context
+//	RECT rect;
 
 	TCHAR greeting[] = _T("Ja, her skal biletet koma då.");
 
+	static int cxClient, cyClient;
+
 	switch (message)
 	{
+
+	case WM_CREATE:
+		// Byrja på raytracinga?
+
+		World w;
+		w.build();
+		w.render_scene();
+
+		break;
+
+	case WM_SIZE:
+		cxClient = LOWORD(lParam);
+		cyClient = HIWORD(lParam);
+
+		break;
+
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
+
+	//	GetClientRect(hWnd, &rect);
+
+//		FillRect(hdc, &ps.rcPaint, (HBRUSH)(COLOR_WINDOW + 8));
 
 		// Here your application is laid out.
 		// For this introduction, we just print out "Hello, Windows desktop!"
@@ -140,7 +157,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			greeting, _tcslen(greeting));
 		// End application-specific layout section.
 
-		FillRect(hdc, &ps.rcPaint, (HBRUSH)(COLOR_WINDOW + 1));
 
 		EndPaint(hWnd, &ps);
 
