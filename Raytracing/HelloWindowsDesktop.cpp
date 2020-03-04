@@ -68,7 +68,7 @@ int WINAPI wWinMain(
 		szTitle, // window text
 		WS_OVERLAPPEDWINDOW, // window style
 		CW_USEDEFAULT, CW_USEDEFAULT, //position
-		400, 400, //size
+		512, 512, //size
 		NULL, //parent window
 		NULL,  // menu bar
 		hInstance, // instance handle, the first parameter from WinMain
@@ -93,7 +93,11 @@ int WINAPI wWinMain(
 	UpdateWindow(hWnd);
 
 
+	// Byrja på raytracinga?
 
+	World w;
+	w.build();
+	w.render_scene();
 
 
 	// Main message loop:
@@ -122,28 +126,68 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 	TCHAR greeting[] = _T("Ja, her skal biletet koma då.");
 
-	static int cxClient, cyClient;
+	static int cxClient = 512;
+	static int cyClient = 512;
+	static int cxSource, cySource;
+
+	static COLORREF* arr;
+	HDC src;
+	HBITMAP map;
 
 	switch (message)
 	{
 
-	case WM_CREATE:
-		// Byrja på raytracinga?
 
-		World w;
-		w.build();
-		w.render_scene();
 
-		break;
-
-	case WM_SIZE:
+	/*case WM_SIZE:
 		cxClient = LOWORD(lParam);
 		cyClient = HIWORD(lParam);
 
-		break;
+		break;*/
 
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
+
+		arr = new COLORREF[cxClient * cyClient]();
+
+		for (int i = 0; i < cxClient; i++)
+		{
+			for (int j = 0; j < cyClient; j++)
+			{
+
+				arr[(cxClient * j) + i] = RGB(50, (int)(j * 255.0 / cyClient), (int)(i * 255.0 / cxClient));
+			}
+		}
+
+
+
+		// Creating temp bitmap
+		map = CreateBitmap(512, // width. 512 in my case
+			512, // height
+			1, // Color Planes, unfortanutelly don't know what is it actually. Let it be 1
+			8 * 4, // Size of memory for one pixel in bits (in win32 4 bytes = 4*8 bits)
+			(void*)arr); // pointer to array
+// Temp HDC to copy picture
+		src = CreateCompatibleDC(hdc); // hdc - Device context for window, I've got earlier with GetDC(hWnd) or GetDC(NULL);
+		SelectObject(src, map); // Inserting picture into our temp HDC
+		// Copy image from temp HDC to window
+		BitBlt(hdc, // Destination
+			0,  // x and
+			0,  // y - upper-left corner of place, where we'd like to copy
+			512, // width of the region
+			512, // height
+			src, // source
+			0,   // x and
+			0,   // y of upper left corner  of part of the source, from where we'd like to copy
+			SRCCOPY); // Defined DWORD to juct copy pixels. Watch more on msdn;
+
+		DeleteObject(map);
+
+		DeleteDC(src); // Deleting temp HDC
+
+	    delete arr;
+
+
 
 	//	GetClientRect(hWnd, &rect);
 
