@@ -12,6 +12,7 @@
 #include <tchar.h>
 #include "World.h"
 #include "Utilities/Constants.h"
+#include <thread>
 
 // Global variables
 
@@ -22,6 +23,7 @@ static TCHAR szWindowClass[] = _T("DesktopApp");
 static TCHAR szTitle[] = _T("Raytracing av fine ting");
 
 HINSTANCE hInst;
+HWND hWnd;
 
    // Forward declarations of functions included in this code module:
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
@@ -63,7 +65,7 @@ int WINAPI wWinMain(
 	hInst = hInstance;
 
 	
-	HWND hWnd = CreateWindowEx(
+	hWnd = CreateWindowEx(
 		0, // optinal window styles. kunne vore WS_EX_COMPOSITED ? cannot be used if the window has a class style of either CS_OWNDC or CS_CLASSDC
 		szWindowClass, // window class
 		szTitle, // window text
@@ -112,6 +114,8 @@ int WINAPI wWinMain(
 	return (int)msg.wParam;
 }
 
+
+
 //  FUNCTION: WndProc(HWND, UINT, WPARAM, LPARAM)
 //
 //  PURPOSE:  Processes messages for the main window.
@@ -138,6 +142,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	switch (message)
 	{
 
+	case WM_CREATE:
+
+		_beginthread(Thread, 0, NULL);
+
+		break;
 
 
 	/*case WM_SIZE:
