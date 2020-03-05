@@ -44,8 +44,8 @@ World::~World()
 
 void World::build(void)
 {
-	vp.set_hres((int)200);
-	vp.set_vres((int)200);
+	vp.set_hres(cCx);
+	vp.set_vres(cCy);
 	vp.set_pixel_size(1.0);
 	vp.set_gamma(1.0);
 	background_color = black;

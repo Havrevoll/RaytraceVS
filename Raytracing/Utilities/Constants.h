@@ -19,6 +19,9 @@ const RGBColor	red(1.0, 0.0, 0.0);
 
 const float 	invRAND_MAX = 1.0 / (float)RAND_MAX;
 
+const int cCx = 1200;
+const int cCy = 800;
+
 // Legg inn oppløysinga som to int som gjeld i heile programmet. Static?
 
 #endif
