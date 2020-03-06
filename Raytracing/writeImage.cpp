@@ -2,6 +2,11 @@
 #include <cstring>
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "Utilities/stb_image_write.h"
+#include <Windows.h>
+#include "Utilities/Constants.h"
+
+extern HWND hWnd;
+extern COLORREF arr[];
 
 writeImage::writeImage(void)
 {
@@ -9,6 +14,8 @@ writeImage::writeImage(void)
 
 writeImage::writeImage(const int hr, const int vr)
 {
+
+
 	hres = hr;
 	vres = vr;
 	len = hres * vres * 3;
@@ -44,6 +51,9 @@ void writeImage::setPixel(const int x, const int y, int red, int green, int blue
 	image[x * 3 + y * hres * 3 + 1] = green;
 	image[x * 3 + y * hres * 3 + 2] = blue;
 	
+	arr[cCx * y + x] = RGB(blue, green, red);
+
+	InvalidateRect(hWnd, NULL, TRUE);
 }
 
 void writeImage::saveImage(void)

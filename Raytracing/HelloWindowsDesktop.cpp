@@ -24,6 +24,7 @@ static TCHAR szTitle[] = _T("Raytracing av fine ting");
 
 HINSTANCE hInst;
 HWND hWnd;
+ COLORREF arr[cCx * cCy] = { 0 }; //skal det vera ein peikar?
 
    // Forward declarations of functions included in this code module:
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
@@ -114,7 +115,11 @@ int WINAPI wWinMain(
 	return (int)msg.wParam;
 }
 
-
+//VOID Thread(PVOID pvoid)
+//{
+//
+//}
+	
 
 //  FUNCTION: WndProc(HWND, UINT, WPARAM, LPARAM)
 //
@@ -135,18 +140,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	static int cyClient = 512;
 	static int cxSource, cySource;
 
-	static COLORREF arr[cCx * cCy] = { 0 }; //skal det vera ein peikar? 
+	 
 	HDC src;
 	HBITMAP map;
 
 	switch (message)
 	{
 
-	case WM_CREATE:
+	//case WM_CREATE:
 
-		_beginthread(Thread, 0, NULL);
+	//	_beginthread(Thread, 0, NULL);
 
-		break;
+	//	break;
 
 
 	/*case WM_SIZE:
@@ -160,14 +165,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		//arr = new COLORREF[cCx * cCy]();
 
-		for (int i = 0; i < cCx; i++)
-		{
-			for (int j = 0; j < cCy; j++)
-			{
+		//for (int i = 0; i < cCx; i++)
+		//{
+		//	for (int j = 0; j < cCy; j++)
+		//	{
 
-				arr[(cCx * (cCy - j)) + i] = RGB(50, (int)(j * 255.0 / cCy), (int)(i * 255.0 / cCx));
-			}
-		}
+		//		arr[(cCx * (cCy - j)) + i] = RGB(50, (int)(j * 255.0 / cCy), (int)(i * 255.0 / cCx));
+		//	}
+		//}
 
 
 
