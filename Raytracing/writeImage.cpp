@@ -5,8 +5,11 @@
 #include <Windows.h>
 #include "Utilities/Constants.h"
 
-extern HWND hWnd;
+//extern HWND hWnd;
 extern COLORREF arr[];
+
+
+
 
 writeImage::writeImage(void)
 {
@@ -52,8 +55,8 @@ void writeImage::setPixel(const int x, const int y, int red, int green, int blue
 	image[x * 3 + y * hres * 3 + 2] = blue;
 	
 	arr[cCx * y + x] = RGB(blue, green, red);
-
-	InvalidateRect(hWnd, NULL, TRUE);
+	
+//	InvalidateRect(hWnd, NULL, TRUE);
 }
 
 void writeImage::saveImage(void)

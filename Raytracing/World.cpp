@@ -2,13 +2,16 @@
 #include "World.h"
 #include "Utilities/Constants.h"
 
+
 // geometric objects
 
 #include "Sphere.h"
+#include "Plane.h"
 
 // Tracers
 
-#include "SingleSphere.h"
+//#include "SingleSphere.h"
+#include "MultipleObjects.h"
 
 // Utilities
 
@@ -47,17 +50,40 @@ void World::build(void)
 {
 	vp.set_hres(cCx);
 	vp.set_vres(cCy);
+
 	vp.set_pixel_size(1.0);
 	vp.set_gamma(1.0);
+
 	background_color = black;
-	tracer_ptr = new SingleSphere(this);
-	sphere.set_center(0.0);
-	sphere.set_radius(85.0);
+
+	tracer_ptr = new MultipleObjects(this);
+
+	// use access functions to set sphere center and radius
+	Sphere* sphere_ptr = new Sphere;
+	sphere_ptr->set_center(0, -25, 0);
+	sphere_ptr->set_radius(80);
+	sphere_ptr->set_color(1, 0, 0); // red
+	add_object(sphere_ptr);
+
+	// use constructor to set sphere center and radius
+	sphere_ptr = new Sphere(Point3D(20, 30, 0), 60);
+	sphere_ptr->set_color(1, 1, 0); // yellow
+	add_object(sphere_ptr);
+
+	sphere_ptr = new Sphere(Point3D(60, 00, 40), 50);
+	sphere_ptr->set_color(0.8, 0.3, 0.0); 
+	add_object(sphere_ptr);
+
+	Plane* plane_ptr = new Plane(Point3D(0, 0, 0), Normal(0, 1, 1));
+	plane_ptr->set_color(0.0, 0.3, 0.0); // dark green
+	add_object(plane_ptr);
 
 
 	im = new writeImage(vp.hres, vp.vres);
+	
 }
 
+VOID toScreen(VOID);
 void World::render_scene(void) const
 {
 	RGBColor pixel_color;
@@ -81,11 +107,13 @@ void World::render_scene(void) const
 			ray.o = Point3D(x, y, zw);
 			pixel_color = tracer_ptr->trace_ray(ray);
 			display_pixel(r, c, pixel_color);
+
+			
 		}
+		
 	}
 
-
-
+	toScreen();
 	im->saveImage();
 }
 
@@ -126,13 +154,13 @@ void World::display_pixel(const int row, const int column, const RGBColor& pixel
 
 	RGBColor mapped_color;
 
-	//if (vp.show_out_of_gamut)
-	//	mapped_color = clamp_to_color(pixel_color);
-	//else
-	//	mapped_color = max_to_one(pixel_color);
+	if (vp.show_out_of_gamut)
+		mapped_color = clamp_to_color(pixel_color);
+	else
+		mapped_color = max_to_one(pixel_color);
 
-	//if (vp.gamma != 1.0)
-	//	mapped_color = mapped_color.powc(vp.inv_gamma);
+	if (vp.gamma != 1.0)
+		mapped_color = mapped_color.powc(vp.inv_gamma);
 
 	// have to start from max y coordinate to convert to screen coordinates
 	int x = column;
@@ -144,4 +172,19 @@ void World::display_pixel(const int row, const int column, const RGBColor& pixel
 
 	im->setPixel(x, y, (int)(pixel_color.r * 255), (int)(pixel_color.g * 255), (int)(pixel_color.b * 255));
 
+}
+
+ShadeRec World::hit_bare_bones_objects(const Ray& ray) 
+{
+	ShadeRec sr(*this);
+	double t;
+	double tmin = kHugeValue;
+	int num_objects = objects.size();
+	for (int j = 0; j < num_objects; j++)
+		if (objects[j]->hit(ray, t, sr) && (t < tmin)) {
+			sr.hit_an_object = true;
+			tmin = t;
+			sr.color = objects[j]->get_color();
+		}
+	return (sr);
 }

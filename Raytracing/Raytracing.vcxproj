@@ -143,9 +143,9 @@
     <ClCompile Include="BuildRedSphere.cpp" />
     <ClCompile Include="GeometricObject.cpp" />
     <ClCompile Include="HelloWindowsDesktop.cpp" />
+    <ClCompile Include="MultipleObjects.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="Shaderec.cpp" />
-    <ClCompile Include="SingleSphere.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Tracer.cpp" />
     <ClCompile Include="Utilities\Matrix.cpp" />
@@ -160,9 +160,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeometricObject.h" />
+    <ClInclude Include="MultipleObjects.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="Shaderec.h" />
-    <ClInclude Include="SingleSphere.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="Tracer.h" />
     <ClInclude Include="Utilities\Constants.h" />

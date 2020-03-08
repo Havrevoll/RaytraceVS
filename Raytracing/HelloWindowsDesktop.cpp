@@ -99,9 +99,9 @@ int WINAPI wWinMain(
 
 	// Byrja på raytracinga?
 
-	World w;
-	w.build();
-	w.render_scene();
+	//World w;
+	//w.build();
+	//w.render_scene();
 
 
 	// Main message loop:
@@ -115,11 +115,86 @@ int WINAPI wWinMain(
 	return (int)msg.wParam;
 }
 
-//VOID Thread(PVOID pvoid)
-//{
-//
-//}
+VOID Thread(PVOID pvoid)
+{
+
+	HDC hdc;
+	HDC src;
+	HBITMAP map;
+
+	for (int i = 0; i < cCx; i++)
+	{
+		for (int j = 0; j < cCy; j++)
+		{
+			arr[(cCx * (cCy - j)) + i] = RGB(50, (int)(j * 255.0 / cCy), (int)(i * 255.0 / cCx));
+
+		}
+	}
+
+	hdc = GetDC(hWnd);
+
+	map = CreateBitmap(cCx, cCy, 1, 8 * 4, (void*)arr);
+	src = CreateCompatibleDC(hdc);
+
+	SelectObject(src, map);
+	BitBlt(hdc, 0, 0, cCx, cCy, src, 0, 0, SRCCOPY);
+	DeleteObject(map);
+
+	DeleteDC(src);
+	ReleaseDC(hWnd, hdc);
+
+	ValidateRect(hWnd, NULL);
+
+	World w;
+	w.build();
+	w.render_scene();
+
+}
 	
+
+
+VOID toScreen(VOID)
+{
+	
+//	arr[cCx * y + x] = RGB(blue, green, red);
+
+	HDC hdc;
+	HDC src;
+	HBITMAP map;
+
+	hdc = GetDC(hWnd);
+
+	// Creating temp bitmap
+	map = CreateBitmap(cCx, cCy, // width, height
+		1, // Color Planes
+		8 * 4, // Size of memory for one pixel in bits (in win32 4 bytes = 4*8 bits)
+		(void*)arr); // pointer to array
+
+	// Temp HDC to copy picture
+	src = CreateCompatibleDC(hdc); // hdc - Device context for window, I've got earlier with GetDC(hWnd) or GetDC(NULL);
+
+
+	SelectObject(src, map); // Inserting picture into our temp HDC
+
+	// Copy image from temp HDC to window
+	BitBlt(hdc, // Destination
+		0,  // x and
+		0,  // y - upper-left corner of place, where we'd like to copy
+		cCx, // width of the region
+		cCy, // height
+		src, // source
+		0,   // x and
+		0,   // y of upper left corner  of part of the source, from where we'd like to copy
+		SRCCOPY); // Defined DWORD to just copy pixels. Watch more on msdn;
+
+	DeleteObject(map);
+
+	DeleteDC(src); // Deleting temp HDC
+	ReleaseDC(hWnd, hdc);
+
+	ValidateRect(hWnd, NULL);
+	
+}
 
 //  FUNCTION: WndProc(HWND, UINT, WPARAM, LPARAM)
 //
@@ -140,19 +215,25 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	static int cyClient = 512;
 	static int cxSource, cySource;
 
-	 
+	 /*
 	HDC src;
-	HBITMAP map;
+	HBITMAP map;*/
 
 	switch (message)
 	{
 
-	//case WM_CREATE:
+	case WM_CREATE:
 
-	//	_beginthread(Thread, 0, NULL);
+		_beginthread(Thread, 0, NULL);
 
-	//	break;
+		SetTimer(hWnd, 1, 10000, NULL);
 
+		break;
+
+	case WM_TIMER:
+		toScreen();
+
+		break;
 
 	/*case WM_SIZE:
 		cxClient = LOWORD(lParam);
@@ -160,8 +241,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		break;*/
 
-	case WM_PAINT:
-		hdc = BeginPaint(hWnd, &ps);
+	//case WM_PAINT:
+	//	hdc = BeginPaint(hWnd, &ps);
 
 		//arr = new COLORREF[cCx * cCy]();
 
@@ -174,7 +255,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		//	}
 		//}
 
-
+/*
 
 		// Creating temp bitmap
 		map = CreateBitmap(cCx, cCy, // width, height
@@ -207,11 +288,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		// TextOut(hdc, 5, 5, greeting, _tcslen(greeting));
 
-		EndPaint(hWnd, &ps);
+		*/
+	//	EndPaint(hWnd, &ps);
 
-		break;
+	//	break;
 
 	case WM_DESTROY:
+		KillTimer(hWnd, 1);
 		PostQuitMessage(0);
 		break;
 	default:
