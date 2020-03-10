@@ -13,6 +13,7 @@
 #include "World.h"
 #include "Utilities/Constants.h"
 #include <thread>
+#include <cmath>
 
 // Global variables
 
@@ -122,12 +123,16 @@ VOID Thread(PVOID pvoid)
 	HDC src;
 	HBITMAP map;
 
+	float x, y;
 	for (int i = 0; i < cCx; i++)
 	{
 		for (int j = 0; j < cCy; j++)
 		{
-			arr[(cCx * (cCy - j)) + i] = RGB(50, (int)(j * 255.0 / cCy), (int)(i * 255.0 / cCx));
-
+			x = i * 8.0 / cCx;
+			y = j * 8.0 / cCy;
+			
+			arr[(cCx * (cCy - j)) + i] = RGB((int)128.0*(1+std::sin(x*x*y*y)), (int)128.0 * (1 + std::sin(x * x * y * y)), (int)128.0 * (1 + std::sin(x * x * y * y)));
+			//arr[(cCx * (cCy - j)) + i] = RGB(50, (int)(j * 255.0 / cCy), (int)(i * 255.0 / cCx));
 		}
 	}
 
@@ -157,7 +162,7 @@ VOID toScreen(VOID)
 {
 	
 //	arr[cCx * y + x] = RGB(blue, green, red);
-
+	
 	HDC hdc;
 	HDC src;
 	HBITMAP map;
