@@ -124,32 +124,36 @@ VOID Thread(PVOID pvoid)
 	HBITMAP map;
 
 	float x, y;
-	for (int i = 0; i < cCx; i++)
-	{
-		for (int j = 0; j < cCy; j++)
+	float ert = 0.0;
+
+	for (ert; ert < 10; ert = ert + 0.05) {
+		for (int i = 0; i < cCx; i++)
 		{
-			x = i * 8.0 / cCx;
-			y = j * 8.0 / cCy;
-			
-			arr[(cCx * (cCy - j)) + i] = RGB((int)128.0*(1+std::sin(x*x*y*y)), (int)128.0 * (1 + std::sin(x * x * y * y)), (int)128.0 * (1 + std::sin(x * x * y * y)));
-			//arr[(cCx * (cCy - j)) + i] = RGB(50, (int)(j * 255.0 / cCy), (int)(i * 255.0 / cCx));
+			for (int j = 0; j < cCy; j++)
+			{
+				x = i * ert / cCx;
+				y = j * ert / cCy;
+
+				arr[(cCx * (cCy - j)) + i] = RGB((int)128.0 * (1 + std::sin(x * x *(1.0/y))), (int)128.0 * (1 + std::sin(x * x * y * y)), (int)128.0 * (1 + std::sin(0.4*x*  y)));
+				//arr[(cCx * (cCy - j)) + i] = RGB(50, (int)(j * 255.0 / cCy), (int)(i * 255.0 / cCx));
+			}
 		}
+
+		hdc = GetDC(hWnd);
+
+		map = CreateBitmap(cCx, cCy, 1, 8 * 4, (void*)arr);
+		src = CreateCompatibleDC(hdc);
+
+		SelectObject(src, map);
+		BitBlt(hdc, 0, 0, cCx, cCy, src, 0, 0, SRCCOPY);
+		DeleteObject(map);
+
+		DeleteDC(src);
+		ReleaseDC(hWnd, hdc);
+
+		ValidateRect(hWnd, NULL);
+
 	}
-
-	hdc = GetDC(hWnd);
-
-	map = CreateBitmap(cCx, cCy, 1, 8 * 4, (void*)arr);
-	src = CreateCompatibleDC(hdc);
-
-	SelectObject(src, map);
-	BitBlt(hdc, 0, 0, cCx, cCy, src, 0, 0, SRCCOPY);
-	DeleteObject(map);
-
-	DeleteDC(src);
-	ReleaseDC(hWnd, hdc);
-
-	ValidateRect(hWnd, NULL);
-
 	World w;
 	w.build();
 	w.render_scene();
@@ -160,9 +164,9 @@ VOID Thread(PVOID pvoid)
 
 VOID toScreen(VOID)
 {
-	
-//	arr[cCx * y + x] = RGB(blue, green, red);
-	
+
+	//	arr[cCx * y + x] = RGB(blue, green, red);
+	if (TRUE) {
 	HDC hdc;
 	HDC src;
 	HBITMAP map;
@@ -198,7 +202,7 @@ VOID toScreen(VOID)
 	ReleaseDC(hWnd, hdc);
 
 	ValidateRect(hWnd, NULL);
-	
+}
 }
 
 //  FUNCTION: WndProc(HWND, UINT, WPARAM, LPARAM)
