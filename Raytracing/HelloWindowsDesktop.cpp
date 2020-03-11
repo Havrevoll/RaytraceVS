@@ -134,7 +134,7 @@ VOID Thread(PVOID pvoid)
 				x = i * ert / cCx;
 				y = j * ert / cCy;
 
-				arr[(cCx * (cCy - j)) + i] = RGB((int)128.0 * (1 + std::sin(x * x *(1.0/y))), (int)128.0 * (1 + std::sin(x * x * y * y)), (int)128.0 * (1 + std::sin(0.4*x*  y)));
+				arr[(cCx * (cCy - j)) + i] = RGB((int)128.0 * (1 + std::sin(x * x *(1.0/y))), (int)128.0 * (1 + std::sin(x * x * y * y)), (int)128.0 * (1 + std::cos(0.4*(ert-x)*  (ert-y))));
 				//arr[(cCx * (cCy - j)) + i] = RGB(50, (int)(j * 255.0 / cCy), (int)(i * 255.0 / cCx));
 			}
 		}
