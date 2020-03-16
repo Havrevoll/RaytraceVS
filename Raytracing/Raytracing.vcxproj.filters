@@ -90,6 +90,9 @@
     <ClCompile Include="MultipleObjects.cpp">
       <Filter>Source Files\Tracers</Filter>
     </ClCompile>
+    <ClCompile Include="Utilities\Point2D.cpp">
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utilities\Vector3D.h">
@@ -145,6 +148,9 @@
     </ClInclude>
     <ClInclude Include="MultipleObjects.h">
       <Filter>Header Files\Tracers</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilities\Point2D.h">
+      <Filter>Header Files\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

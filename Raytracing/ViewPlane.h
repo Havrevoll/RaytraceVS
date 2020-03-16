@@ -9,6 +9,8 @@ public:
 	float inv_gamma; // one over gamma
 	bool			show_out_of_gamut;			// display red if RGBColor out of gamut
 
+	int num_samples;
+
 public:
 	ViewPlane(void);
 
@@ -24,6 +26,8 @@ public:
 	void set_pixel_size(const float size);
 
 	void set_gamma(const float g);
+
+	void set_num_samples(const int num);
 };
 
 inline void ViewPlane::set_hres(const int h_res)
@@ -45,6 +49,11 @@ inline void ViewPlane::set_gamma(const float g)
 {
 	gamma = g;
 	inv_gamma = 1.0 / gamma;
+}
+
+inline void ViewPlane::set_num_samples(const int num)
+{
+	num_samples = num;
 }
 
 

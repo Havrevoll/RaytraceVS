@@ -17,6 +17,7 @@
 
 #include "Utilities/Vector3D.h"
 #include "Utilities/Point3D.h"
+#include "Utilities/Point2D.h"
 #include "Utilities/Normal.h"
 #include "Shaderec.h"
 #include "Utilities/Ray.h"
@@ -53,6 +54,7 @@ void World::build(void)
 
 	vp.set_pixel_size(1.0);
 	vp.set_gamma(1.0);
+	vp.set_num_samples(25);
 
 	background_color = black;
 
@@ -89,9 +91,11 @@ void World::render_scene(void) const
 	RGBColor pixel_color;
 	Ray ray;
 	double zw = 100.0;
-	double x, y;
 
+	int n = (int)sqrt((float)vp.num_samples);
+	Point2D pp; // sample point on a pixel
 
+	
 	 /*open_window(vp.hres, vp.vres);*/
 	
 
@@ -102,10 +106,20 @@ void World::render_scene(void) const
 	{
 		for (int c = 0; c <= vp.hres; c++)  //across
 		{
-			x = vp.s * (c - 0.5 * (vp.hres - 1.0));
-			y = vp.s * (r - 0.5 * (vp.vres - 1.0));
-			ray.o = Point3D(x, y, zw);
-			pixel_color = tracer_ptr->trace_ray(ray);
+			pixel_color = black;
+
+			for (int p = 0; p < n; p++) // up pixel
+			{
+				for (int q = 0; q < n; q++)
+				{
+					pp.x = vp.s * (c - 0.5 * vp.hres + (q + 0.5) / n);
+					pp.y = vp.s * (r - 0.5 * vp.vres + (p + 0.5) / n);
+					ray.o = Point3D(pp.x, pp.y, zw);
+					pixel_color += tracer_ptr->trace_ray(ray);
+				}
+			}
+			
+
 			display_pixel(r, c, pixel_color);
 
 			
