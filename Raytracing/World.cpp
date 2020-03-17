@@ -54,7 +54,7 @@ void World::build(void)
 
 	vp.set_pixel_size(1.0);
 	vp.set_gamma(1.0);
-	vp.set_num_samples(25);
+	vp.set_num_samples(16);
 
 	background_color = black;
 
@@ -69,16 +69,16 @@ void World::build(void)
 
 	// use constructor to set sphere center and radius
 	sphere_ptr = new Sphere(Point3D(20, 30, 0), 60);
-	sphere_ptr->set_color(1, 1, 0); // yellow
+	sphere_ptr->set_color(1.0, 1.0, 0); // yellow
 	add_object(sphere_ptr);
 
 	sphere_ptr = new Sphere(Point3D(60, 00, 40), 50);
-	sphere_ptr->set_color(0.8, 0.3, 0.0); 
+	sphere_ptr->set_color(0.4, 0.6, 0.9); 
 	add_object(sphere_ptr);
 
-	Plane* plane_ptr = new Plane(Point3D(0, 0, 0), Normal(0, 1, 1));
-	plane_ptr->set_color(0.0, 0.3, 0.0); // dark green
-	add_object(plane_ptr);
+	//Plane* plane_ptr = new Plane(Point3D(0, 0, 0), Normal(0, 1, 1));
+	//plane_ptr->set_color(0.0, 0.3, 0.0); // dark green
+	//add_object(plane_ptr);
 
 
 	im = new writeImage(vp.hres, vp.vres);
@@ -110,7 +110,7 @@ void World::render_scene(void) const
 
 			for (int p = 0; p < n; p++) // up pixel
 			{
-				for (int q = 0; q < n; q++)
+				for (int q = 0; q < n; q++) // across pixel
 				{
 					pp.x = vp.s * (c - 0.5 * vp.hres + (q + 0.5) / n);
 					pp.y = vp.s * (r - 0.5 * vp.vres + (p + 0.5) / n);
@@ -119,7 +119,7 @@ void World::render_scene(void) const
 				}
 			}
 			
-
+			pixel_color /= vp.num_samples; // average the colors
 			display_pixel(r, c, pixel_color);
 
 			

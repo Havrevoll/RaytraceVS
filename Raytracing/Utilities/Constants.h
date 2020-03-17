@@ -1,8 +1,8 @@
-#ifndef __CONSTANTS__
-#define __CONSTANTS__
+#pragma once
 
 #include <stdlib.h>
 #include "RGBColor.h"
+//#include <random>
 
 const double 	PI 			= 3.1415926535897932384;
 const double 	TWO_PI 		= 6.2831853071795864769;
@@ -19,9 +19,15 @@ const RGBColor	red(1.0, 0.0, 0.0);
 
 const float 	invRAND_MAX = 1.0 / (float)RAND_MAX;
 
-const int cCx = 1000;
-const int cCy = 1000;
+const int cCx = 500;
+const int cCy = 500;
 
 // Legg inn oppløysinga som to int som gjeld i heile programmet. Static?
 
-#endif
+
+// std::random_device rd;
+//std::default_random_engine gen;//( rd() );
+//std::uniform_real_distribution<float> distr(0.0, 1.0);
+
+// lag tilfeldige tal slik: 
+// distr(gen)

@@ -126,7 +126,7 @@ VOID Thread(PVOID pvoid)
 	float x, y;
 	float ert = 0.0;
 
-	for (ert; ert < 10; ert = ert + 0.05) {
+	for (ert; ert < 10; ert = ert + 0.5) {
 		for (int i = 0; i < cCx; i++)
 		{
 			for (int j = 0; j < cCy; j++)
@@ -235,7 +235,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		_beginthread(Thread, 0, NULL);
 
-		SetTimer(hWnd, 1, 10000, NULL);
+		SetTimer(hWnd, 1, 1000, NULL);
 
 		break;
 
