@@ -108,15 +108,14 @@ void World::render_scene(void) const
 		{
 			pixel_color = black;
 
-			for (int p = 0; p < n; p++) // up pixel
+			for (int p = 0; p < vp.num_samples; p++) // up pixel
 			{
-				for (int q = 0; q < n; q++) // across pixel
-				{
-					pp.x = vp.s * (c - 0.5 * vp.hres + (q + 0.5) / n);
-					pp.y = vp.s * (r - 0.5 * vp.vres + (p + 0.5) / n);
+				
+					pp.x = vp.s * (c - 0.5 * vp.hres + rand_float(gen));
+					pp.y = vp.s * (r - 0.5 * vp.vres + rand_float(gen));
 					ray.o = Point3D(pp.x, pp.y, zw);
 					pixel_color += tracer_ptr->trace_ray(ray);
-				}
+				
 			}
 			
 			pixel_color /= vp.num_samples; // average the colors

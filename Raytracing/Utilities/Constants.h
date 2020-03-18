@@ -24,10 +24,3 @@ const int cCy = 500;
 
 // Legg inn oppløysinga som to int som gjeld i heile programmet. Static?
 
-
-// std::random_device rd;
-//std::default_random_engine gen;//( rd() );
-//std::uniform_real_distribution<float> distr(0.0, 1.0);
-
-// lag tilfeldige tal slik: 
-// distr(gen)
