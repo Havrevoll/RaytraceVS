@@ -235,7 +235,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		_beginthread(Thread, 0, NULL);
 
-		SetTimer(hWnd, 1, 1000, NULL);
+		SetTimer(hWnd, 1, 15000, NULL);
 
 		break;
 

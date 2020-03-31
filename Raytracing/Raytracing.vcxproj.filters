@@ -37,6 +37,12 @@
     <Filter Include="Header Files\Tracers">
       <UniqueIdentifier>{2baea248-5b14-4abe-8cff-1b75d96fa1bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Samplers">
+      <UniqueIdentifier>{859cca05-9fbe-4df1-af82-821c0bdb8c54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Samplers">
+      <UniqueIdentifier>{eda2056d-0ba3-419d-bc9c-d3f9f7f9f26e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HelloWindowsDesktop.cpp">
@@ -94,7 +100,28 @@
       <Filter>Source Files\Utility</Filter>
     </ClCompile>
     <ClCompile Include="Maths.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Hammersley.cpp">
+      <Filter>Source Files\Samplers</Filter>
+    </ClCompile>
+    <ClCompile Include="Jittered.cpp">
+      <Filter>Source Files\Samplers</Filter>
+    </ClCompile>
+    <ClCompile Include="MultiJittered.cpp">
+      <Filter>Source Files\Samplers</Filter>
+    </ClCompile>
+    <ClCompile Include="NRooks.cpp">
+      <Filter>Source Files\Samplers</Filter>
+    </ClCompile>
+    <ClCompile Include="PureRandom.cpp">
+      <Filter>Source Files\Samplers</Filter>
+    </ClCompile>
+    <ClCompile Include="Regular.cpp">
+      <Filter>Source Files\Samplers</Filter>
+    </ClCompile>
+    <ClCompile Include="Sampler.cpp">
+      <Filter>Source Files\Samplers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +181,27 @@
     </ClInclude>
     <ClInclude Include="Utilities\Point2D.h">
       <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Hammersley.h">
+      <Filter>Header Files\Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="Jittered.h">
+      <Filter>Header Files\Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="MultiJittered.h">
+      <Filter>Header Files\Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="NRooks.h">
+      <Filter>Header Files\Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="PureRandom.h">
+      <Filter>Header Files\Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="Regular.h">
+      <Filter>Header Files\Samplers</Filter>
+    </ClInclude>
+    <ClInclude Include="Sampler.h">
+      <Filter>Header Files\Samplers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

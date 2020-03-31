@@ -1,4 +1,8 @@
 #pragma once
+#include "Sampler.h"
+#include "MultiJittered.h"
+#include "Regular.h"
+
 class ViewPlane
 {
 public:
@@ -10,6 +14,8 @@ public:
 	bool			show_out_of_gamut;			// display red if RGBColor out of gamut
 
 	int num_samples;
+
+	Sampler* sampler_ptr;
 
 public:
 	ViewPlane(void);
@@ -28,6 +34,11 @@ public:
 	void set_gamma(const float g);
 
 	void set_num_samples(const int num);
+
+	void set_sampler(Sampler* sp);
+
+	void set_samples(const int n);
+
 };
 
 inline void ViewPlane::set_hres(const int h_res)
@@ -55,5 +66,6 @@ inline void ViewPlane::set_num_samples(const int num)
 {
 	num_samples = num;
 }
+
 
 

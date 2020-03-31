@@ -24,7 +24,14 @@
 #include "Utilities/Maths.h"
 #include <Windows.h>
 
-
+// Samplers
+#include "Sampler.h"
+#include "Jittered.h"
+#include "MultiJittered.h"
+#include "Hammersley.h"
+#include "NRooks.h"
+#include "PureRandom.h"
+#include "Regular.h"
 
 
 // build functions
@@ -49,12 +56,17 @@ World::~World()
 
 void World::build(void)
 {
+	
+	int num_samples = 4;
+
+	Sampler* sampler_ptr = new Jittered(num_samples);
+
 	vp.set_hres(cCx);
 	vp.set_vres(cCy);
 
 	vp.set_pixel_size(1.0);
 	vp.set_gamma(1.0);
-	vp.set_num_samples(16);
+	vp.set_sampler(sampler_ptr);
 
 	background_color = black;
 
@@ -92,8 +104,9 @@ void World::render_scene(void) const
 	Ray ray;
 	double zw = 100.0;
 
-	int n = (int)sqrt((float)vp.num_samples);
+	//int n = (int)sqrt((float)vp.num_samples);
 	Point2D pp; // sample point on a pixel
+	Point2D sp; // sample point in [0, 1] x [0, 1]
 
 	
 	 /*open_window(vp.hres, vp.vres);*/
@@ -108,11 +121,12 @@ void World::render_scene(void) const
 		{
 			pixel_color = black;
 
-			for (int p = 0; p < vp.num_samples; p++) // up pixel
+			for (int j = 0; j < vp.num_samples; j++) // up pixel
 			{
+				sp = vp.sampler_ptr->sample_unit_square();
 				
-					pp.x = vp.s * (c - 0.5 * vp.hres + rand_float(gen));
-					pp.y = vp.s * (r - 0.5 * vp.vres + rand_float(gen));
+					pp.x = vp.s * (c - 0.5 * vp.hres + sp.x);
+					pp.y = vp.s * (r - 0.5 * vp.vres + sp.y);
 					ray.o = Point3D(pp.x, pp.y, zw);
 					pixel_color += tracer_ptr->trace_ray(ray);
 				
