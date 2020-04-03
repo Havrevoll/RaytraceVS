@@ -14,6 +14,7 @@
 #include "Utilities/Constants.h"
 #include <thread>
 #include <cmath>
+#include <string>
 
 // Global variables
 
@@ -122,7 +123,7 @@ VOID Thread(PVOID pvoid)
 	HDC hdc;
 	HDC src;
 	HBITMAP map;
-
+	/*
 	float x, y;
 	float ert = 0.0;
 
@@ -154,15 +155,23 @@ VOID Thread(PVOID pvoid)
 		ValidateRect(hWnd, NULL);
 
 	}
+	*/
+	//	World w;
+	// w.build();
+	//	w.render_scene();
+	
 	World w;
 	w.build();
-	w.render_scene();
+	w.render_perspective();
+		
 
+		
+	
 }
 	
 
 
-VOID toScreen(VOID)
+VOID toScreen(void)
 {
 
 	//	arr[cCx * y + x] = RGB(blue, green, red);
@@ -199,6 +208,13 @@ VOID toScreen(VOID)
 	DeleteObject(map);
 
 	DeleteDC(src); // Deleting temp HDC
+
+	TCHAR tekste[] = TEXT("Hei");
+
+	
+
+	TextOut(hdc, 20, 40, tekste, ARRAYSIZE(tekste));
+
 	ReleaseDC(hWnd, hdc);
 
 	ValidateRect(hWnd, NULL);
@@ -224,6 +240,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	static int cyClient = 512;
 	static int cxSource, cySource;
 
+	
+
+	
+
+
 	 /*
 	HDC src;
 	HBITMAP map;*/
@@ -235,12 +256,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		_beginthread(Thread, 0, NULL);
 
-		SetTimer(hWnd, 1, 15000, NULL);
+		SetTimer(hWnd, 1, 10, NULL);
 
 		break;
 
 	case WM_TIMER:
-		toScreen();
+		// toScreen();
+
+	
 
 		break;
 

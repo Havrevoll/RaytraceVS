@@ -30,6 +30,8 @@ public:
 
 	void render_scene(void) const;
 
+	void render_perspective(void) const;
+
 	void add_object(GeometricObject* object_ptr);
 
 	ShadeRec hit_bare_bones_objects(const Ray& ray);

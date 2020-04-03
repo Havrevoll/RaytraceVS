@@ -43,6 +43,7 @@ void ViewPlane::set_sampler(Sampler* sp)
 
 	num_samples = sp->get_num_samples();
 	sampler_ptr = sp;
+	// sampler_ptr->map_samples_to_unit_disk();
 }
 
 void ViewPlane::set_samples(const int n)

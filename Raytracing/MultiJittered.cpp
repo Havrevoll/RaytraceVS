@@ -36,8 +36,8 @@ void MultiJittered::generate_samples(void)
 		{
 			for (int j = 0; j < n; j++)
 			{
-				samples[i * n + j + p * num_samples].x = (i * n + j) * subcell_width + rand_float(0.0, subcell_width);
-				samples[i * n + j + p * num_samples].y = (j * n + i) * subcell_width + rand_float(0.0, subcell_width);
+				samples[(long long)i * (long long)n + j + p * num_samples].x = (i * n + j) * subcell_width + rand_float(0.0, subcell_width);
+				samples[(long long)i * (long long)n + j + p * num_samples].y = (j * n + i) * subcell_width + rand_float(0.0, subcell_width);
 
 			}
 		}
@@ -51,9 +51,9 @@ void MultiJittered::generate_samples(void)
 			for (int j = 0; j < n; j++)
 			{
 				int k = rand_int(j, n - 1);
-				double t = samples[i * n + j + p * num_samples].x;
-				samples[i * n + j + p * num_samples].x = samples[i * n + k + p * num_samples].x;
-				samples[i * n + k + p * num_samples].x = t;
+				double t = samples[(long long)i * n + j + p * num_samples].x;
+				samples[(long long)i * n + j + p * num_samples].x = samples[(long long)i * n + k + p * num_samples].x;
+				samples[(long long)i * n + k + p * num_samples].x = t;
 			}
 		}
 	}
@@ -66,9 +66,9 @@ void MultiJittered::generate_samples(void)
 			for (int j = 0; j < n; j++)
 			{
 				int k = rand_int(j, n - 1);
-				double t = samples[j * n + i + p * num_samples].y;
-				samples[j * n + i + p * num_samples].y = samples[k * n + i + p * num_samples].y;
-				samples[k * n + i + p * num_samples].y = t;
+				double t = samples[(long long)j * n + i + p * num_samples].y;
+				samples[(long long)j * n + i + p * num_samples].y = samples[(long long)k * n + i + p * num_samples].y;
+				samples[(long long)k * n + i + p * num_samples].y = t;
 			}
 		}
 	}

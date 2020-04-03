@@ -6,6 +6,7 @@
 
 
 #include "Utilities/Point2D.h"
+#include "Utilities/Point3D.h"
 
 
 class Sampler
@@ -15,6 +16,9 @@ protected:
 	int num_sets; // the number of sample sets (patterns) stored
 	std::vector<Point2D> samples; //sample points on a unit square
 	std::vector<int> shuffled_indices; // shuffled samples array indices
+	std::vector<Point2D> disk_samples; // sample points on a unit disk
+	std::vector<Point3D> hemisphere_samples; // sample points on a hemisphere
+	
 	unsigned long count; // the current number of sample points used
 	int jump; // random index jump
 public:
@@ -24,6 +28,8 @@ public:
 	Sampler(int num);
 
 	Sampler(void);
+
+	Sampler(const int ns, const int n_sets);
 
 	virtual ~Sampler(void);
 
@@ -42,6 +48,14 @@ public:
 
 	// get next sample on unit square
 	Point2D sample_unit_square();
+
+	Point2D sample_unit_disk();
+
+	Point3D sample_hemisphere();
+
+	void map_samples_to_unit_disk(void);
+
+	void map_samples_to_hemisphere(const float e);
 };
 
 inline int Sampler::get_num_samples(void)

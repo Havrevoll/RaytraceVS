@@ -59,7 +59,7 @@ void World::build(void)
 	
 	int num_samples = 4;
 
-	Sampler* sampler_ptr = new Jittered(num_samples);
+	Sampler* sampler_ptr = new MultiJittered(num_samples);
 
 	vp.set_hres(cCx);
 	vp.set_vres(cCy);
@@ -98,6 +98,7 @@ void World::build(void)
 }
 
 VOID toScreen(VOID);
+
 void World::render_scene(void) const
 {
 	RGBColor pixel_color;
@@ -141,6 +142,67 @@ void World::render_scene(void) const
 	}
 
 	toScreen();
+	im->saveImage();
+}
+
+void World::render_perspective(void) const
+{
+	RGBColor pixel_color;
+	Ray ray;
+	//double zw = 100.0;
+
+	double param = 20.0;
+
+	while (param < 400)
+	{
+
+
+
+		double eye = 200.0;
+
+		double d = param;
+
+		param += 5;
+
+		//int n = (int)sqrt((float)vp.num_samples);
+		Point2D pp; // sample point on a pixel
+		Point2D sp; // sample point in [0, 1] x [0, 1]
+
+
+		 /*open_window(vp.hres, vp.vres);*/
+
+
+
+		ray.o = Point3D(0.0, 0.0, eye);
+
+		for (int r = 0; r < vp.vres; r++) // up
+			for (int c = 0; c <= vp.hres; c++)  //across
+			{
+				pixel_color = black;
+
+				for (int j = 0; j < vp.num_samples; j++) // up pixel
+				{
+					sp = vp.sampler_ptr->sample_unit_square();
+
+					pp.x = vp.s * (c - 0.5 * vp.hres + sp.x);
+					pp.y = vp.s * (r - 0.5 * vp.vres + sp.y);
+					ray.d = Vector3D(pp.x, pp.y, -d);
+					ray.d.normalize();
+					pixel_color += tracer_ptr->trace_ray(ray);
+
+				}
+
+				pixel_color /= vp.num_samples; // average the colors
+				display_pixel(r, c, pixel_color);
+
+
+			}
+
+
+
+		toScreen();
+
+	}
 	im->saveImage();
 }
 
