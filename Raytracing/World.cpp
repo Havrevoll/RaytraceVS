@@ -23,6 +23,9 @@
 #include "Utilities/Ray.h"
 #include "Utilities/Maths.h"
 #include <Windows.h>
+#include <strsafe.h>
+#include <string>
+
 
 // Samplers
 #include "Sampler.h"
@@ -97,7 +100,7 @@ void World::build(void)
 	
 }
 
-VOID toScreen(VOID);
+VOID toScreen(const TCHAR * teksten, int length);
 
 void World::render_scene(void) const
 {
@@ -141,7 +144,7 @@ void World::render_scene(void) const
 		
 	}
 
-	toScreen();
+	toScreen(TEXT("hei"), 10);
 	im->saveImage();
 }
 
@@ -151,18 +154,18 @@ void World::render_perspective(void) const
 	Ray ray;
 	//double zw = 100.0;
 
-	double param = 20.0;
+	//double param = 50.0;
 
-	while (param < 400)
-	{
-
+	//while (param < 400)
+	//{
+//param += 20;
 
 
 		double eye = 200.0;
 
-		double d = param;
+		double d = 200.0;
 
-		param += 5;
+		
 
 		//int n = (int)sqrt((float)vp.num_samples);
 		Point2D pp; // sample point on a pixel
@@ -199,10 +202,16 @@ void World::render_perspective(void) const
 			}
 
 
+		
+		TCHAR buff[50];
+	
+		int iLength =45;
 
-		toScreen();
+			iLength = wsprintf(buff, TEXT("Distance is %d og eye er %d"), (int)d, (int)eye);
+		
+		toScreen(buff, iLength);
 
-	}
+	//}
 	im->saveImage();
 }
 

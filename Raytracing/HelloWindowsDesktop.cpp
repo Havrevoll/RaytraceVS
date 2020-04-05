@@ -14,7 +14,7 @@
 #include "Utilities/Constants.h"
 #include <thread>
 #include <cmath>
-#include <string>
+#include <strsafe.h>
 
 // Global variables
 
@@ -171,7 +171,7 @@ VOID Thread(PVOID pvoid)
 	
 
 
-VOID toScreen(void)
+VOID toScreen(const TCHAR* teksten, int length)
 {
 
 	//	arr[cCx * y + x] = RGB(blue, green, red);
@@ -209,11 +209,15 @@ VOID toScreen(void)
 
 	DeleteDC(src); // Deleting temp HDC
 
-	TCHAR tekste[] = TEXT("Hei");
+	//TCHAR tekste[] = TEXT("Hei");
+
+
+	
+	TCHAR hal[] = TEXT("hei");
 
 	
 
-	TextOut(hdc, 20, 40, tekste, ARRAYSIZE(tekste));
+	TextOut(hdc, 10, 10, teksten, length);
 
 	ReleaseDC(hWnd, hdc);
 
