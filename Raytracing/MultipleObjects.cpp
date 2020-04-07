@@ -12,7 +12,7 @@ MultipleObjects::MultipleObjects(World* _worldPtr) : Tracer(_worldPtr)
 
 }
 
-RGBColor MultipleObjects::trace_ray(const Ray& ray) const
+RGBColor MultipleObjects::trace_ray(const Ray& ray, const int depth) const
 {
 	ShadeRec sr(world_ptr->hit_bare_bones_objects(ray));
 	if (sr.hit_an_object)

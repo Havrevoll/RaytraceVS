@@ -9,7 +9,7 @@ Tracer::Tracer(World* w_ptr) : world_ptr(w_ptr)
 {
 }
 
-RGBColor Tracer::trace_ray(const Ray& ray) const
+RGBColor Tracer::trace_ray(const Ray& ray, const int depth) const
 {
 	return (black);
 }

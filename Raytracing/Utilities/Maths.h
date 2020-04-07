@@ -2,6 +2,8 @@
 
 #include <random>
 
+#include "Utilities/AlmostEquals.h"
+
 //static std::random_device rd;
 //static std::default_random_engine gen( rd() );
 //static std::uniform_real_distribution<float> rand_float(0.0, 1.0);
@@ -58,4 +60,15 @@ inline double
 max(double x0, double x1)
 {
 	return((x0 > x1) ? x0 : x1);
+}
+
+static bool isEqual(double left, double right)
+{
+	//double left = eye.x; // something
+	//double right = lookat.x; // something
+	const FloatingPoint<double> lhs(left), rhs(right);
+
+	return lhs.AlmostEquals(rhs);
+
+	
 }

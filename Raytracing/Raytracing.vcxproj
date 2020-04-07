@@ -141,6 +141,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BuildRedSphere.cpp" />
+    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="FishEye.cpp" />
     <ClCompile Include="GeometricObject.cpp" />
     <ClCompile Include="Hammersley.cpp" />
     <ClCompile Include="HelloWindowsDesktop.cpp" />
@@ -149,12 +151,17 @@
     <ClCompile Include="MultiJittered.cpp" />
     <ClCompile Include="MultipleObjects.cpp" />
     <ClCompile Include="NRooks.cpp" />
+    <ClCompile Include="Orthographic.cpp" />
+    <ClCompile Include="Pinhole.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="PureRandom.cpp" />
     <ClCompile Include="Regular.cpp" />
     <ClCompile Include="Sampler.cpp" />
     <ClCompile Include="Shaderec.cpp" />
     <ClCompile Include="Sphere.cpp" />
+    <ClCompile Include="Spherical.cpp" />
+    <ClCompile Include="Stereo.cpp" />
+    <ClCompile Include="ThinLens.cpp" />
     <ClCompile Include="Tracer.cpp" />
     <ClCompile Include="Utilities\Matrix.cpp" />
     <ClCompile Include="Utilities\Normal.cpp" />
@@ -168,19 +175,27 @@
     <ClCompile Include="writeImage.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="FishEye.h" />
     <ClInclude Include="GeometricObject.h" />
     <ClInclude Include="Hammersley.h" />
     <ClInclude Include="Jittered.h" />
     <ClInclude Include="MultiJittered.h" />
     <ClInclude Include="MultipleObjects.h" />
     <ClInclude Include="NRooks.h" />
+    <ClInclude Include="Orthographic.h" />
+    <ClInclude Include="Pinhole.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="PureRandom.h" />
     <ClInclude Include="Regular.h" />
     <ClInclude Include="Sampler.h" />
     <ClInclude Include="Shaderec.h" />
     <ClInclude Include="Sphere.h" />
+    <ClInclude Include="Spherical.h" />
+    <ClInclude Include="Stereo.h" />
+    <ClInclude Include="ThinLens.h" />
     <ClInclude Include="Tracer.h" />
+    <ClInclude Include="Utilities\AlmostEquals.h" />
     <ClInclude Include="Utilities\Constants.h" />
     <ClInclude Include="Utilities\Maths.h" />
     <ClInclude Include="Utilities\Matrix.h" />

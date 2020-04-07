@@ -132,7 +132,7 @@ void World::render_scene(void) const
 					pp.x = vp.s * (c - 0.5 * vp.hres + sp.x);
 					pp.y = vp.s * (r - 0.5 * vp.vres + sp.y);
 					ray.o = Point3D(pp.x, pp.y, zw);
-					pixel_color += tracer_ptr->trace_ray(ray);
+					pixel_color += tracer_ptr->trace_ray(ray,0);
 				
 			}
 			
@@ -191,7 +191,7 @@ void World::render_perspective(void) const
 					pp.y = vp.s * (r - 0.5 * vp.vres + sp.y);
 					ray.d = Vector3D(pp.x, pp.y, -d);
 					ray.d.normalize();
-					pixel_color += tracer_ptr->trace_ray(ray);
+					pixel_color += tracer_ptr->trace_ray(ray,0);
 
 				}
 
